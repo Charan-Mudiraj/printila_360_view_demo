@@ -12,19 +12,30 @@ function App() {
   const [isClick, setIsClick] = useState(false);
   const [prevX, setPrevX] = useState(null);
   const [count, setCount] = useState(0);
-  const views = [v1, v2, v3, v4, v5, v6];
   const [currentView, setCurrentView] = useState(0);
   const moveLeft = () => {
+    const currImg = document.getElementById("img-" + currentView);
+    currImg.hidden = true;
     if (currentView != 5) {
+      const nextImg = document.getElementById("img-" + Number(currentView + 1));
+      nextImg.hidden = false;
       setCurrentView((cv) => cv + 1);
     } else {
+      const nextImg = document.getElementById("img-0");
+      nextImg.hidden = false;
       setCurrentView(0);
     }
   };
   const moveRight = () => {
+    const currImg = document.getElementById("img-" + currentView);
+    currImg.hidden = true;
     if (currentView != 0) {
+      const nextImg = document.getElementById("img-" + Number(currentView - 1));
+      nextImg.hidden = false;
       setCurrentView((cv) => cv - 1);
     } else {
+      const nextImg = document.getElementById("img-5");
+      nextImg.hidden = false;
       setCurrentView(5);
     }
   };
@@ -84,7 +95,12 @@ function App() {
           }}
           draggable={false}
         >
-          <img src={views[currentView]} style={{ height: "450px" }} />
+          <img src={v1} style={{ height: "450px" }} hidden={false} id="img-0" />
+          <img src={v2} style={{ height: "450px" }} hidden={true} id="img-1" />
+          <img src={v3} style={{ height: "450px" }} hidden={true} id="img-2" />
+          <img src={v4} style={{ height: "450px" }} hidden={true} id="img-3" />
+          <img src={v5} style={{ height: "450px" }} hidden={true} id="img-4" />
+          <img src={v6} style={{ height: "450px" }} hidden={true} id="img-5" />
         </div>
         <img src={rotateImg} style={{ height: "70px" }} draggable={false} />
       </div>
